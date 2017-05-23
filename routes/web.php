@@ -18,5 +18,22 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+//Order
 Route::get('/order', 'OrderController@index');
-Route::get('/request', 'RequestController@index');
+
+//Employee
+Route::get('/employee', 'EmployeeController@index');
+Route::get('/employeeRegister', 'EmployeeController@employeeRegister');
+
+//Client
+Route::get('/client', 'ClientController@index');
+Route::get('/clientRegister', 'ClientController@clientRegister');
+
+//Admin
+Route::get('/admin', 'AdminController@getAdmin');
+Route::get('/adminRegister', 'AdminController@adminRegister');
+Route::post('/adminSet', 'AdminController@adminSet');
+Route::get('adminDetail/{id}', 'AdminController@adminDetail');
+Route::post('adminUpdate/{id}', 'AdminController@adminUpdate');
+Route::get('adminDelete/{id}', 'AdminController@adminDelete');
