@@ -87,6 +87,7 @@
 
         @yield('content')
     </div>
+      <footer class="text-center">Ingenieria Web &copy; 2017</footer>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

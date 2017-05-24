@@ -81,9 +81,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {Ordenes de servicio}
+                    {ServiTec}
                 </div>
             </div>
         </div>
+            <footer class="text-center">Ingenieria Web &copy; 2018</footer>
     </body>
+
 </html>

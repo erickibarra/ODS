@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Admin;
 use DB;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -47,7 +48,7 @@ class AdminController extends Controller
         $admin= new Admin();
         $admin->name=$data->input('Name');
         $admin->email=$data->input('Email');
-        $admin->password=$data->input('Password');
+        $admin->password=Hash::make($data->input('Password'));
         $admin->status='0';
         $admin->save();
         return Redirect('/admin');

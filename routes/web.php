@@ -36,12 +36,21 @@ Route::get('/generatePDF/{id}', 'OrderController@generatePDF');
 Route::get('sendEmail', 'OrderController@sendEmail');
 
 //Employee
-Route::get('/employee', 'EmployeeController@index');
+Route::get('/employee', 'EmployeeController@getEmployee');
 Route::get('/employeeRegister', 'EmployeeController@employeeRegister');
+Route::post('/employeeSet', 'EmployeeController@employeeSet');
+Route::get('employeeDelete/{id}', 'EmployeeController@employeeDelete');
+Route::get('employeeDetail/{id}', 'EmployeeController@employeeDetail');
+Route::post('employeeUpdate/{id}', 'EmployeeController@employeeUpdate');
 
 //Client
-Route::get('/client', 'ClientController@index');
+Route::get('/client', 'ClientController@getClient');
 Route::get('/clientRegister', 'ClientController@clientRegister');
+Route::post('/clientSet', 'ClientController@clientSet');
+Route::get('clientDelete/{id}', 'ClientController@clientDelete');
+Route::get('clientDetail/{id}', 'ClientController@clientDetail');
+Route::post('clientUpdate/{id}', 'ClientController@clientUpdate');
+
 
 //Admin
 Route::get('/admin', 'AdminController@getAdmin');
