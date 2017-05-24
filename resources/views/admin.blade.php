@@ -19,8 +19,8 @@
 
        @foreach($admin as $a)
       <tr>
-        <td>{{$a->Name}}</td>
-        <td>{{$a->Email}}</td>
+        <td>{{$a->name}}</td>
+        <td>{{$a->email}}</td>
           <td>
             <a href="{{url('/adminDetail')}}/{{$a->id}}" class="btn btn-primary btn-xs">
               <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

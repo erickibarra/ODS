@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {Hoolie}
+                    {Ordenes de servicio}
                 </div>
             </div>
         </div>

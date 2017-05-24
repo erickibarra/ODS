@@ -12,8 +12,8 @@ class AdminController extends Controller
 
     public function getAdmin()
     {
-         $admin=DB::table('Admin')
-            ->where('Status', '=', '0')
+         $admin=DB::table('users')
+            ->where('status', '=', '0')
             ->get();
     	return view('admin', compact('admin'));
     }
@@ -29,9 +29,10 @@ class AdminController extends Controller
 
     public function adminSet(Request $data){
         $admin= new Admin();
-        $admin->Name=$data->input('Name');
-        $admin->Email=$data->input('Email');
-        $admin->Password=$data->input('Password');
+        $admin->name=$data->input('Name');
+        $admin->email=$data->input('Email');
+        $admin->password=$data->input('Password');
+        $admin->status='0';
         $admin->save();
         return Redirect('/admin');
     }
@@ -39,14 +40,14 @@ class AdminController extends Controller
 
     public function adminUpdate(Request $data, $id){
         $admin=Admin::find($id);
-        $admin->Name=$data->input('Name');
-        $admin->Email=$data->input('Email');
+        $admin->name=$data->input('Name');
+        $admin->email=$data->input('Email');
         $admin->save();
         return Redirect('/admin');
     }
         public function adminDelete($id){
         $admin=Admin::find($id);
-        $admin->Status='1';
+        $admin->status='1';
         $admin->save();
         return Redirect('/admin');
     }
