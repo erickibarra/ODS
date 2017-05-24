@@ -63,8 +63,7 @@ public function returnOrder(){
             ->join('Services as Se', 'O.idServices', '=', 'Se.id')
             ->join('Status as St', 'O.Status', '=', 'St.id')
             ->select('O.id as idOrder', 'O.idAdmin', 'O.idEmployee', 'O.idClient', 'O.idServices', 'O.Description', 'O.created_at', 'O.updated_at', 'O.Status', 'A.name as admin', 'E.Name as emp', 'C.Name as client', 'Se.*', 'St.Status as status')
-            ->where('O.Status', '=', '1')
-            ->orWhere('O.Status', '=', '2')
+            ->where('O.Status', '=', '3')
             ->get();            
         return view('order-detail', compact('ordersF'));
     }
@@ -96,12 +95,13 @@ public function orderSet(Request $data){
         return Redirect('/order');
     }
 
-    public function orderUpdate(Request $data, $id){
+    public function orderUpdate($id, $status){
         $order=Order::find($id);
-        $order->Status=$data->input('Status');
+        $order->Status=$status;
         $order->save();
         return Redirect('/order');
     }
+
     public function generatePDF($id){
         $order = DB::table('Orders as O')
             ->join('users as A', 'O.idAdmin', '=', 'A.id')
@@ -114,10 +114,13 @@ public function orderSet(Request $data){
             ->get();            
 
 
-        $pdf = PDF::loadView('pdfGenerated', ['order' => $order]);
+        $pdf = PDF::loadView('pdfGenerated', compact('order'));
         return $pdf->stream();
     }
-
+    public function sendEmail(){
+        Mail::send('pdfGenerated');
+        return Redirect('/order-detail');
+    }
 
 
 }

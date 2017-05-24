@@ -28,9 +28,12 @@ Route::get('/getOrdersFin', 'OrderController@getOrdersFin');
 Route::get('/orderRegister', 'OrderController@orderRegister');
 Route::get('/orderRegister', 'OrderController@getData');
 Route::post('/orderSet', 'OrderController@orderSet');
-Route::post('orderUpdate/{id}', 'OrderController@orderUpdate');
+
+Route::get('orderUpdate/{id}/{status}', 'OrderController@orderUpdate');
+
 Route::get('orderDelete/{id}', 'OrderController@orderDelete');
 Route::get('/generatePDF/{id}', 'OrderController@generatePDF');
+Route::get('sendEmail', 'OrderController@sendEmail');
 
 //Employee
 Route::get('/employee', 'EmployeeController@index');

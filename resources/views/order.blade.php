@@ -41,9 +41,10 @@
         <td>{{$o->status}} <span class="glyphicon glyphicon-asterisk" style="color: red;"></span></td>
         @endif
         <td>
-           <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalUpdate{{$o->idOrder}}">
+          <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalUpdate{{$o->idOrder}}">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
           </button>
+           
             <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal{{$o->idOrder}}">
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           </button>
@@ -60,7 +61,6 @@
           <div class="modal-body">
 
     <div class="form-group">
-    <form action="{{url('/orderUpdate')}}/{{$o->idOrder}}" method="POST">
     <h2>Orden #{{$o->idOrder}}</h2>
           <label class="control-label col-sm-2" for="pwd">Status:</label>
           <div class="col-sm-10">
@@ -71,14 +71,17 @@
                 <option value="2">En Proceso</option>
                 <option value="3">Finalizada</option>
              </select>
-             </form>
           </div>
     </div>
           </div>
           <hr>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary" data-dismiss="modal">Actualizar</button>
+            @if($o->status == 'Pendiente')
+            <a href="{{url('/orderUpdate')}}/{{$o->idOrder}}/2" class="btn btn-primary">Actualizar</a>
+            @elseif($o->status == 'En proceso')
+             <a href="{{url('/orderUpdate')}}/{{$o->idOrder}}/3" class="btn btn-primary">Actualizar</a>
+            @endif
           </div>
         </div>
       </div>

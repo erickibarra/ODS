@@ -7,6 +7,7 @@
       <a href="{{url('adminRegister')}}" class="btn btn-success" style="float:right;">
             Registrar administrador
     </a>
+    
 <table class="table table-striped">
     <thead>
       <tr>

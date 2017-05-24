@@ -28,13 +28,14 @@
         <td>{{$o->created_at}}</td>
         <td>{{$o->updated_at}}</td>
 
-        @if($o->status == 'Finalizada')
+        @if($o->Status == 'Finalizada')
         <td>{{$o->status}} <span class="glyphicon glyphicon-asterisk" style="color: gray;"></span></td>
         @else
         <td>{{$o->status}} <span class="glyphicon glyphicon-asterisk" style="color: gray;"></span></td>
         @endif
         <td>
-          <a href="{{url('generatePDF')}}/{{$o->idOrder}}rr" class="btn btn-warning glyphicon glyphicon-list-alt" target="_blank"></a>
+          <a href="{{url('generatePDF')}}/{{$o->idOrder}}" class="btn btn-warning glyphicon glyphicon-list-alt" target="_blank"></a>
+          <!--<a href="{{url('sendEmail')}}" class="btn btn-primary glyphicon glyphicon-envelope"></a>-->
         </td>
       </tr>
     @endforeach
