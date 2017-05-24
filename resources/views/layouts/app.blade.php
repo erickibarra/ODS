@@ -22,7 +22,8 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-inverse navbar-static-top">
+
+        <nav class="navbar navbar-inverse bg-inverse">
             <div class="container">
                 <div class="navbar-header">
                     <!-- Collapsed Hamburger -->
@@ -33,16 +34,18 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <!-- Branding Image -->
+                    <!-- NavBar-->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Inicio') }}
                     </a>
-                    <!-- NavBar-->
+                    <a class="navbar-brand" href="{{ url('/order') }}">Ordenes</a>
                     <a class="navbar-brand" href="{{ url('/admin') }}">Administradores</a>
                     <a class="navbar-brand" href="{{ url('/employee') }}">Empleados</a>
                     <a class="navbar-brand" href="{{ url('/client') }}">Clientes</a>
-                    <a class="navbar-brand" href="{{ url('/order') }}">Ordenes</a>
-                </div>
+
+                   
+        </div>
+            
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->

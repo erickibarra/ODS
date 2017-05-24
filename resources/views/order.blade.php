@@ -4,6 +4,10 @@
 <div class="container">
   
   <h2>Ordenes</h2> 
+   <a href="{{url('orderRegister')}}" class="btn btn-success" style="float:right;">
+            Registrar Orden
+    </a>
+    
 <table class="table table-striped">
     <thead>
       <tr>
@@ -24,8 +28,8 @@
         <td>{{$o->emp}}</td>
         <td>{{$o->client}}</td>
         <td>{{$o->Type}}</td>
-        <td>{{$o->Created_at}}</td>
-        <td>{{$o->Finalized_at}}</td>
+        <td>{{$o->created_at}}</td>
+        <td>{{$o->updated_at}}</td>
 
         @if($o->status == 'Pendiente')
         <td>{{$o->status}} <span class="glyphicon glyphicon-asterisk" style="color: red;"></span></td>
@@ -48,6 +52,8 @@
       @endforeach
     </tbody>
   </table>
-
+<a href="{{url('orderRegister')}}" class="btn btn-primary" style="float:right;">
+            Ver Finalizadas 
+    </a>
 </div>
 @endsection

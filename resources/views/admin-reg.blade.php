@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+<h2>Agregar Administrador</h2>
 <div class="col-xs-12">
 	<form action="{{url('/adminSet')}}" method="POST">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">

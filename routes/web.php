@@ -20,7 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 //Order
-Route::get('/order', 'OrderController@index');
+Route::get('/order', 'OrderController@getOrders');
+Route::get('/orderRegister', 'OrderController@orderRegister');
+Route::get('/orderRegister', 'OrderController@getData');
+Route::post('/orderSet', 'OrderController@orderSet');
 
 //Employee
 Route::get('/employee', 'EmployeeController@index');
