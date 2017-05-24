@@ -41,16 +41,45 @@
         <td>{{$o->status}} <span class="glyphicon glyphicon-asterisk" style="color: red;"></span></td>
         @endif
         <td>
-            <a href="#" class="btn btn-primary btn-xs">
-              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-            </a>
+           <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalUpdate{{$o->idOrder}}">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          </button>
             <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal{{$o->idOrder}}">
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           </button>
           </td>
       </tr>
+      <!-- Modal Update -->
+    <div class="modal fade" id="modalUpdate{{$o->idOrder}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">¿Deseas Actulizar la orden?</h4>
+          </div>
+          <div class="modal-body">
+
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="pwd">Status:</label>
+          <div class="col-sm-10">
+             <select class="form-control" name="Status">
+                <option value="1">Pendiente</option>
+                <option value="2">En Proceso</option>
+                <option value="3">Finalizada</option>
+             </select>
+          </div>
+    </div>
+          </div>
+          <hr>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <a href="{{url('/orderDelete')}}/{{$o->idOrder}}" class="btn btn-primary">Actualizar</a>
+          </div>
+        </div>
+      </div>
+    </div>
       
-      <!-- Modal -->
+      <!-- Modal Delete -->
     <div class="modal fade" id="modal{{$o->idOrder}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
