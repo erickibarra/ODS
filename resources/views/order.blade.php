@@ -60,20 +60,25 @@
           <div class="modal-body">
 
     <div class="form-group">
+    <form action="{{url('/orderUpdate')}}/{{$o->idOrder}}" method="POST">
+    <h2>Orden #{{$o->idOrder}}</h2>
           <label class="control-label col-sm-2" for="pwd">Status:</label>
           <div class="col-sm-10">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          
              <select class="form-control" name="Status">
                 <option value="1">Pendiente</option>
                 <option value="2">En Proceso</option>
                 <option value="3">Finalizada</option>
              </select>
+             </form>
           </div>
     </div>
           </div>
           <hr>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <a href="{{url('/orderDelete')}}/{{$o->idOrder}}" class="btn btn-primary">Actualizar</a>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal">Actualizar</button>
           </div>
         </div>
       </div>
@@ -100,7 +105,7 @@
     @endforeach
     </tbody>
   </table>
-<a href="{{url('orderRegister')}}" class="btn btn-primary" style="float:right;">
+<a href="{{url('getOrdersFin')}}" class="btn btn-primary" style="float:right;">
             Ver Finalizadas 
     </a>
 </div>

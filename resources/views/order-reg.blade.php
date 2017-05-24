@@ -39,7 +39,6 @@
 		  	 @foreach($service as $s)
 				  <option value="{{$s->id}}">{{$s->Type}}</option>
     			@endforeach
-
 			</select>
 			</div>
 		</div>

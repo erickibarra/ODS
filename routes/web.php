@@ -15,17 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+
 //Order
 Route::get('/order', 'OrderController@getOrders');
+Route::get('/getOrders', 'OrderController@getOrders');
+Route::get('/getOrdersFin', 'OrderController@getOrdersFin');
 Route::get('/orderRegister', 'OrderController@orderRegister');
 Route::get('/orderRegister', 'OrderController@getData');
 Route::post('/orderSet', 'OrderController@orderSet');
-//Route::post('orderUpdate/{idOrder}', 'OrderController@orderUpdate');
+Route::post('orderUpdate/{id}', 'OrderController@orderUpdate');
 Route::get('orderDelete/{id}', 'OrderController@orderDelete');
+Route::get('/generatePDF/{id}', 'OrderController@generatePDF');
 
 //Employee
 Route::get('/employee', 'EmployeeController@index');
@@ -37,6 +42,7 @@ Route::get('/clientRegister', 'ClientController@clientRegister');
 
 //Admin
 Route::get('/admin', 'AdminController@getAdmin');
+Route::get('/getAdmin', 'AdminController@getAdmin');
 Route::get('/adminRegister', 'AdminController@adminRegister');
 Route::post('/adminSet', 'AdminController@adminSet');
 Route::get('adminDetail/{id}', 'AdminController@adminDetail');

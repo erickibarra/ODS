@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\Services;
 use App\Client;
+use App;
 use DB;
+use PDF;
+use Mail;
+use Session;
+use Redirect;
 
 class OrderController extends Controller
 {
@@ -26,6 +31,10 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+public function returnOrder(){
+        return view('order');
+    }
     public function getOrders()
     {
             $orders = DB::table('Orders as O')
@@ -44,6 +53,21 @@ class OrderController extends Controller
      {
         return view('order-reg');
      }
+
+    public function getOrdersFin()
+    {
+            $ordersF = DB::table('Orders as O')
+            ->join('users as A', 'O.idAdmin', '=', 'A.id')
+            ->join('Employees as E', 'O.idEmployee', '=', 'E.id')
+            ->join('Clients as C', 'O.idClient', '=', 'C.id')
+            ->join('Services as Se', 'O.idServices', '=', 'Se.id')
+            ->join('Status as St', 'O.Status', '=', 'St.id')
+            ->select('O.id as idOrder', 'O.idAdmin', 'O.idEmployee', 'O.idClient', 'O.idServices', 'O.Description', 'O.created_at', 'O.updated_at', 'O.Status', 'A.name as admin', 'E.Name as emp', 'C.Name as client', 'Se.*', 'St.Status as status')
+            ->where('O.Status', '=', '1')
+            ->orWhere('O.Status', '=', '2')
+            ->get();            
+        return view('order-detail', compact('ordersF'));
+    }
 
     public function getData()
     {
@@ -72,15 +96,28 @@ public function orderSet(Request $data){
         return Redirect('/order');
     }
 
-   /* public function orderUpdate(Request $data, $idOrder){
-        $admin=Admin::find($id);
-        $admin->name=$data->input('Name');
-        $admin->email=$data->input('Email');
-        $admin->save();
-        return Redirect('/admin');
-    }*/
+    public function orderUpdate(Request $data, $id){
+        $order=Order::find($id);
+        $order->Status=$data->input('Status');
+        $order->save();
+        return Redirect('/order');
+    }
+    public function generatePDF($id){
+        $order = DB::table('Orders as O')
+            ->join('users as A', 'O.idAdmin', '=', 'A.id')
+            ->join('Employees as E', 'O.idEmployee', '=', 'E.id')
+            ->join('Clients as C', 'O.idClient', '=', 'C.id')
+            ->join('Services as Se', 'O.idServices', '=', 'Se.id')
+            ->join('Status as St', 'O.Status', '=', 'St.id')
+            ->select('O.id as idOrder', 'O.idAdmin', 'O.idEmployee', 'O.idClient', 'O.idServices', 'O.Description', 'O.created_at', 'O.updated_at', 'O.Status', 'A.name as admin', 'E.Name as emp', 'C.Name as client', 'Se.*', 'St.Status as status')
+            ->where('O.id', '=', $id)
+            ->get();            
 
-            
+
+        $pdf = PDF::loadView('pdfGenerated', ['order' => $order]);
+        return $pdf->stream();
+    }
+
 
 
 }

@@ -19,7 +19,7 @@
 			<input name="Password" type="password" placeholder="Teclea tu contraseña" class="form-control" required>
 		</div>
 		<button type="submit" class="btn btn-primary">Registrar</button>
-		<a href="{{url('/')}}" class="btn btn-danger">Cancelar</a>
+		<a href="{{url('getAdmin')}}" class="btn btn-danger">Cancelar</a>
 	</form>
 </div>
 @endsection
