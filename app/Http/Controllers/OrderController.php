@@ -63,9 +63,9 @@ class OrderController extends Controller
 public function orderSet(Request $data){
         $order= new Order();
         $order->idAdmin='1';
-        $order->idEmployee='1';//$data->input('Employee');
-        $order->idClient='1';//$data->input('Client');
-        $order->idServices='1';//$data->input('Service');
+        $order->idEmployee=$data->input('Employee');
+        $order->idClient=$data->input('Client');
+        $order->idServices=$data->input('Service');
         $order->Description=$data->input('Description');
         $order->Status='1';
         $order->save();
