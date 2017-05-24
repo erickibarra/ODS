@@ -24,6 +24,8 @@ Route::get('/order', 'OrderController@getOrders');
 Route::get('/orderRegister', 'OrderController@orderRegister');
 Route::get('/orderRegister', 'OrderController@getData');
 Route::post('/orderSet', 'OrderController@orderSet');
+//Route::post('orderUpdate/{idOrder}', 'OrderController@orderUpdate');
+Route::get('orderDelete/{id}', 'OrderController@orderDelete');
 
 //Employee
 Route::get('/employee', 'EmployeeController@index');

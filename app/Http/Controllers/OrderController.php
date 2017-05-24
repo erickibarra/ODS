@@ -34,7 +34,7 @@ class OrderController extends Controller
             ->join('Clients as C', 'O.idClient', '=', 'C.id')
             ->join('Services as Se', 'O.idServices', '=', 'Se.id')
             ->join('Status as St', 'O.Status', '=', 'St.id')
-            ->select('O.*', 'A.name as admin', 'E.Name as emp', 'C.Name as client', 'Se.*', 'St.Status as status')
+            ->select('O.id as idOrder', 'O.idAdmin', 'O.idEmployee', 'O.idClient', 'O.idServices', 'O.Description', 'O.created_at', 'O.updated_at', 'O.Status', 'A.name as admin', 'E.Name as emp', 'C.Name as client', 'Se.*', 'St.Status as status')
             ->where('O.Status', '=', '1')
             ->orWhere('O.Status', '=', '2')
             ->get();            
@@ -54,6 +54,11 @@ class OrderController extends Controller
             $client=Client::all();
         return view('order-reg', compact('emp', 'service', 'client'));
     }
+     public function orderDelete($id){
+       $order=Order::find($id);
+        $order->delete();
+        return Redirect('/order');
+    }
              
 public function orderSet(Request $data){
         $order= new Order();
@@ -66,6 +71,15 @@ public function orderSet(Request $data){
         $order->save();
         return Redirect('/order');
     }
+
+   /* public function orderUpdate(Request $data, $idOrder){
+        $admin=Admin::find($id);
+        $admin->name=$data->input('Name');
+        $admin->email=$data->input('Email');
+        $admin->save();
+        return Redirect('/admin');
+    }*/
+
             
 
 

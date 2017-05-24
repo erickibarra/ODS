@@ -16,7 +16,7 @@
         <th>Cliente</th>
         <th>Servicio</th>
         <th>Inicio</th>
-        <th>Termino</th>
+        <th>Actualización</th>
         <th>Status</th>
         <th>Acciones</th>
       </tr>
@@ -44,12 +44,31 @@
             <a href="#" class="btn btn-primary btn-xs">
               <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             </a>
-            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal">
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal{{$o->idOrder}}">
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           </button>
           </td>
       </tr>
-      @endforeach
+      
+      <!-- Modal -->
+    <div class="modal fade" id="modal{{$o->idOrder}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">¿Deseas cancelar la orden?</h4>
+          </div>
+          <div class="modal-body">
+            ¡La orden #{{$o->idOrder}} se cancelará y no se podrá recuperar!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <a href="{{url('/orderDelete')}}/{{$o->idOrder}}" class="btn btn-danger">Eliminar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endforeach
     </tbody>
   </table>
 <a href="{{url('orderRegister')}}" class="btn btn-primary" style="float:right;">
